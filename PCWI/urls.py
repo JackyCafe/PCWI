@@ -19,16 +19,18 @@ from django.urls import path,include
 from rest_framework.routers import DefaultRouter
 from django.contrib.auth import views as auth_views
 
-from app1.views import UserViewSet
+from app1.views import UserViewSet,UserProfileViewSet
 
+'''
 router = DefaultRouter()
-router.register(r'user1', UserViewSet)
-print(router.urls)
+router.register(r'user', UserViewSet)
+router.register(r'userprofile', UserProfileViewSet)
+'''
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app1.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
-
+    #url(r'^api/', include(router.urls)),
 
 ]

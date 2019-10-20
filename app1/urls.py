@@ -16,12 +16,31 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from app1 import views
+
+from app1.views import *
+
+router = DefaultRouter()
+router.register(r'user', UserViewSet)
+router.register(r'userprofile', UserProfileViewSet)
+router.register(r'department',DepartmentViewSet)
+router.register(r'consult',ConsultViewSet)
+router.register(r'medicationstyle',MedicationStyleViewSet)
+router.register(r'medicationnotice',MedicationNoticeViewSet)
+router.register(r'medicationrecord',MedicationRecordViewSet)
+
 
 urlpatterns = [
     path('', views.index),
     path('index/', views.index,name ='index'),
     path('register/', views.register,name='register'),
+    path('department/', views.department, name='department'),
+    path('consult/', views.consult, name='consult'),
+    path('medicationstyle/', views.medicationstyle, name='medicationstyle'),
+    path('medicationnotice/', views.medicationnotice, name='medicationnotice'),
+
+    url(r'^api/', include(router.urls)),
 
 ]
